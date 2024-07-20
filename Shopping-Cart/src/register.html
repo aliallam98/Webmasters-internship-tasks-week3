@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/output.css" />
+  </head>
+  <body>
+    <section class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
+      <div
+        class="conatiner max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1"
+      >
+        <!-- Image -->
+        <div class="flex-1 text-center hidden lg:flex">
+          <div
+            class=" w-full bg-contain bg-center bg-no-repeat"
+            style="
+              background-image: url('https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/324201542/original/dcc8cb82f9fa13c775e7ba0cc832f5a25b070924/test-your-web-application.jpg');
+            "
+          ></div>
+        </div>
+        <!-- Image -->
+        <div
+          class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 mt-12 flex flex-col items-center"
+        >
+          <h1 class="text-2xl xl:text-3xl font-extrabold">Sign up</h1>
+          <div class="w-full flex-1 mt-8">
+            <!-- Form -->
+            <form class="mx-auto max-w-xs" id="registerForm">
+              <input
+                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                type="text"
+                placeholder="ex ali allam"
+                id="registerFormName"
+              />
+              <p class="text-red-500 my-2 text-sm" id="registerFormNameError"></p>
+
+              <input
+                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                type="email"
+                placeholder="ex. allam98.ali@gmail.com"
+                id="registerFormEmail"
+              />
+              <p class="text-red-500 mt-2 text-sm" id="registerFormEmailError"></p>
+
+              <input
+                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                type="password"
+                placeholder="Password"
+                id="registerFormPassword"
+              />
+              <p class="text-red-500 mt-2 text-sm" id="registerFormPasswordError"></p>
+
+              <button
+                class="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+              >
+                <svg
+                  class="w-6 h-6 -ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                  <circle cx="8.5" cy="7" r="4" />
+                  <path d="M20 8v6M23 11h-6" />
+                </svg>
+                <span class="ml-3"> Sign Up </span>
+              </button>
+              <p class="mt-6 text-lg text-gray-600 text-center">
+                Already has an account ?
+                <a
+                  href="./login.html"
+                  class="border-b border-gray-500 border-dotted"
+                >
+                  Sign In
+                </a>
+              </p>
+              <p class="mt-6 text-xs text-gray-600 text-center">
+                I agree to abide by templatana's
+                <a href="#" class="border-b border-gray-500 border-dotted">
+                  Terms of Service
+                </a>
+                and its
+                <a href="#" class="border-b border-gray-500 border-dotted">
+                  Privacy Policy
+                </a>
+              </p>
+            </form>
+            <!-- Form -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script type="module" src="./js/register.js"></script>
+
+  </body>
+</html>
