@@ -9,6 +9,7 @@ const sumArrayOfNumbers = (arrayOfNumber) => {
 const findBiggestNumber = (arrayOfNumber) => {
   return Math.max(...arrayOfNumber);
 };
+//Another way
 const findBiggestNumberTwo = (arrayOfNumber) => {
   return arrayOfNumber.sort((a, b) => b - a)[0]
 };
