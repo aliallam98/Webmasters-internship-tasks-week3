@@ -15,14 +15,13 @@ loginForm.addEventListener("submit",(e) => {
     validationResults.isValidPassword ? loginFormPasswordError.innerHTML = "" : loginFormPasswordError.innerHTML = "Password must be 6 chars at least"
     if(validationResults.isValidEmail && validationResults.isValidPassword ){
       const isUserExists = usersArray.find((user)=> (user.email === loginFormEmail.value && user.password === loginFormPassword.value))
-      console.log(usersArray);
-      console.log(isUserExists);
       if (!isUserExists) {
         return loginFormPasswordError.innerHTML = "Email or Password is wrong";
       }     
       loginFormPasswordError.innerHTML = "";
-      isUserExists.isLoggedIn = true;
       localStorage.setItem("Users",JSON.stringify(usersArray))
-      window.location.href = "/src/index.html"
+      localStorage.setItem("CurrentUser",JSON.stringify(isUserExists))
+      window.location.href = "index.html"
     }
   })
+
