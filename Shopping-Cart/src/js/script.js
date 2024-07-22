@@ -34,7 +34,6 @@ const protectedRoutes = [
   "/cart.html",
 ];
 
-console.log(window.location.href);
 
 const currentUser = JSON.parse(localStorage.getItem("CurrentUser")) || {};
 const isUserLoggedIn = !!currentUser.email;
