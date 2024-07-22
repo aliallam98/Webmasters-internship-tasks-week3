@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./dist/output.css" />
   </head>
   <body>
+    
     <section>
       <div class="container mx-auto mt-10">
         <div class="sm:flex shadow-md my-10">
@@ -18,47 +19,10 @@
               </h2>
             </div>
             <div id="cartProducts">
-              <div
-              class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50"
-            >
-              <div class="md:w-4/12 2xl:w-1/4 w-full">
-                <img
-                  src="https://i.ibb.co/6gzWwSq/Rectangle-20-1.png"
-                  alt="Black Leather Purse"
-                  class="h-full object-center object-cover md:block hidden"
-                />
-                <img
-                  src="https://i.ibb.co/TTnzMTf/Rectangle-21.png"
-                  alt="Black Leather Purse"
-                  class="md:hidden w-full h-full object-center object-cover"
-                />
-              </div>
-              <div
-                class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center"
-              >
-                <p class="text-xs leading-3 text-gray-800 md:pt-0 pt-4">
-                  RF293
-                </p>
-                <div class="flex items-center justify-between w-full">
-                  <p class="text-base font-black leading-none text-gray-800 my-6">
-                    Luxe card holder
-                  </p>
-                </div>
-                <p>price</p>
-
-                <div class="flex items-center justify-between pt-5">
-                  <p
-                    class="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer"
-                  >
-                    Remove
-                  </p>
-                </div>
-              </div>
-            </div>
             </div>
 
             <a
-              href="#"
+              href="index.html"
               class="flex font-semibold text-indigo-600 text-sm mt-10"
             >
               <svg
@@ -72,16 +36,16 @@
               Continue Shopping
             </a>
           </div>
-          <div id="summary" class="w-full sm:w-1/4 md:w-1/2 px-8 py-10">
+          <div id="summary" class="w-full  md:w-1/2 px-8 py-10">
             <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
             <div class="flex justify-between mt-10 mb-5">
               <span
                 class="font-semibold text-sm uppercase"
                 id="totalCartItemsTwo"
-                >Items 3</span
+                >Items 0</span
               >
               <span class="font-semibold text-sm" id="totalCartPrice"
-                >590$</span
+                >0$</span
               >
             </div>
             <div>
@@ -116,7 +80,7 @@
                 class="flex font-semibold justify-between py-6 text-sm uppercase"
               >
                 <span>Total cost</span>
-                <span id="priceSummary">$600</span>
+                <span id="priceSummary">$0</span>
               </div>
               <button
                 class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
@@ -130,5 +94,6 @@
     </section>
 
     <script type="module" src="./js/cart.js"></script>
+    <script type="module" src="./js/script.js"></script>
   </body>
 </html>

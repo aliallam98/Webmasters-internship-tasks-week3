@@ -28,14 +28,19 @@ const authRoutes = [
   "/Shopping-Cart/src/login.html",
   "/Shopping-Cart/src/register.html",
 ];
+const protectedRoutes = [
+  "/Shopping-Cart/src/index.html",
+  "/Shopping-Cart/src/cart.html",
+];
 
 const currentUser = JSON.parse(localStorage.getItem("CurrentUser")) || {};
 const isUserLoggedIn = !!currentUser.email;
 
-if (authRoutes.includes(window.location.pathname)) {
-  if (isUserLoggedIn) {
-    window.location.href = "index.html";
-  }
+if (authRoutes.includes(window.location.pathname) && isUserLoggedIn) {
+  window.location.href = "index.html";
+}
+if (protectedRoutes.includes(window.location.pathname) && !isUserLoggedIn) {
+  window.location.href = "login.html";
 }
 
 const addToCart = (id) => {
@@ -43,7 +48,6 @@ const addToCart = (id) => {
   const isProductExistsInCart = currentUser.cart.find(
     (product) => product.id == id
   );
-  console.log(isProductExistsInCart);
   if (isProductExistsInCart) {
     isProductExistsInCart.amount++;
     localStorage.setItem("CurrentUser", JSON.stringify(currentUser));
@@ -67,9 +71,11 @@ const addToCart = (id) => {
     updateCartAmount(currentUser.cart.length);
   }
 };
-const updateCartAmount = (n) => {
+
+export const updateCartAmount = (n) => {
   cartIcon.children.item(1).innerHTML = n;
 };
+
 if (productsSection) {
   const displayData = (data) => {
     let box = ``;
@@ -80,7 +86,8 @@ if (productsSection) {
             <img src="${data[i].image}" alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-72">
               <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
-              <p class="text-lg font-bold text-black truncate block capitalize">${data[i].name}</p>
+              <p class="text-lg font-semibold text-black truncate block capitalize">${data[i].name}</p>
+              <p class="text-lg text-black truncate block capitalize">${data[i].description}</p>
               <div class="flex items-center">
                 <p class="text-lg font-semibold text-black cursor-auto my-3">${data[i].price}</p>
                 <del>
@@ -121,8 +128,12 @@ if (productsSection) {
 
 if (actionsDiv) {
   if (isUserLoggedIn) {
-    cartIcon.classList.remove("hidden")
-    actionsDiv.innerHTML = `<button class="bg-indigo-500 text-white px-6 py-2 rounded-md" id="logOut">
+    cartIcon.classList.remove("hidden");
+    actionsDiv.innerHTML = `
+    <button class="  text-black border   px-4 py-2 rounded-md" >
+        ${currentUser.name}
+      </button>
+    <button class="bg-indigo-500 text-white  px-4 py-2 rounded-md" id="logOut">
         Logout
       </button>`;
     const logOutBtn = document.getElementById("logOut");
@@ -131,7 +142,7 @@ if (actionsDiv) {
       window.location.reload();
     };
   } else {
-    cartIcon.classList.add("hidden")
+    cartIcon.classList.add("hidden");
     actionsDiv.innerHTML = `<button class="bg-indigo-500 text-white px-6 py-2 rounded-md">
               <a href="login.html">Login</a>
             </button>

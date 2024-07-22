@@ -1,22 +1,27 @@
+import {  usersArray } from "./script.js";
+
 const totalCartPrice = document.getElementById("totalCartPrice");
 const totalCartItems = document.getElementById("totalCartItems");
 const totalCartItemsTwo = document.getElementById("totalCartItemsTwo");
 const priceSummary = document.getElementById("priceSummary");
 const cartProducts = document.getElementById("cartProducts");
 
-const { cart } = JSON.parse(localStorage.getItem("CurrentUser"));
-const totalPrice = cart.reduce(
-  (acc, curr) => acc?.price * acc.amount  + curr.price *curr.amount
-);
+let currentUser = JSON.parse(localStorage.getItem("CurrentUser")) || {}
+let cart = currentUser.cart
+const updateAmountAndPrice =  ()=>{
+  const totalPrice =  cart?.reduce((acc, curr) => acc  + curr.price * curr.amount , 0);
+
 totalCartPrice.innerHTML = `${totalPrice} $`
-totalCartItems.innerHTML = `${cart.length} Items`
-totalCartItemsTwo.innerHTML = `${cart.length} Items`
-priceSummary.innerHTML = `${totalPrice + 10} $`
+totalCartItems.innerHTML = `${cart?.length} Items`
+totalCartItemsTwo.innerHTML = `${cart?.length} Items`
+priceSummary.innerHTML = totalPrice > 0  ? `${totalPrice + 10} $` : 0
+}
+updateAmountAndPrice()
 
 const displayData = ()=>{
     let box = ``
 
-for (let i = 0; i < cart.length; i++) {
+for (let i = 0; i < cart?.length; i++) {
     box +=`<div
     class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50"
   >
@@ -43,10 +48,11 @@ for (let i = 0; i < cart.length; i++) {
         ${cart[i].name}
         </p>
       </div>
-      <p>${cart[i].price} $</p>
+      <p>Price: ${cart[i].price} $</p>
+      <p>Amount: ${cart[i].amount} </p>
 
       <div class="flex items-center justify-between pt-5">
-        <button
+        <button id="removeFromCartBtn-${cart[i].id}"
           class="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer"
         >
           Remove
@@ -56,6 +62,28 @@ for (let i = 0; i < cart.length; i++) {
   </div>`
 }
 cartProducts.innerHTML = box
+for (let i = 0; i < cart.length; i++) {
+  const button = document.getElementById(`removeFromCartBtn-${cart[i].id}`);
+  if (button) {
+    button.addEventListener("click", () => {
+      removeFromCart(cart[i].id);
+    });
+  }
+}
 
 }
 displayData()
+
+const removeFromCart = (id) => {
+  const newCart = cart.filter((product) => product.id !== id);
+  cart = newCart
+  currentUser.cart = newCart
+  localStorage.setItem("CurrentUser", JSON.stringify(currentUser));
+  const userToUpdate = usersArray.findIndex(
+    (user) => user.email == currentUser.email
+  );
+  usersArray[userToUpdate] = currentUser;
+  localStorage.setItem("Users", JSON.stringify(usersArray));
+  displayData()
+  updateAmountAndPrice()
+};
