@@ -24,6 +24,7 @@ export function validateForm({ email, password, name }) {
   };
 }
 
+const isRootPage = window.location.pathname === "/"
 const authRoutes = [
   "/login.html",
   "/register.html",
@@ -38,7 +39,7 @@ console.log(window.location.href);
 const currentUser = JSON.parse(localStorage.getItem("CurrentUser")) || {};
 const isUserLoggedIn = !!currentUser.email;
 
-if (authRoutes.some((route)=>window.location.href.endsWith(route)) && isUserLoggedIn) {
+if ((authRoutes.some((route)=>window.location.href.endsWith(route)) || isRootPage )&& isUserLoggedIn) {
   window.location.href = "index.html";
 }
 if (protectedRoutes.some((route)=>window.location.href.endsWith(route)) && !isUserLoggedIn) {
