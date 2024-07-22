@@ -38,10 +38,10 @@ const protectedRoutes = [
 const currentUser = JSON.parse(localStorage.getItem("CurrentUser")) || {};
 const isUserLoggedIn = !!currentUser.email;
 
-if ((authRoutes.some((route)=>window.location.href.endsWith(route)) || isRootPage )&& isUserLoggedIn) {
+if (authRoutes.some((route)=>window.location.href.endsWith(route))  && isUserLoggedIn) {
   window.location.href = "index.html";
 }
-if (protectedRoutes.some((route)=>window.location.href.endsWith(route)) && !isUserLoggedIn) {
+if ((protectedRoutes.some((route)=>window.location.href.endsWith(route)) || isRootPage ) && !isUserLoggedIn) {
   window.location.href = "login.html";
 }
 
