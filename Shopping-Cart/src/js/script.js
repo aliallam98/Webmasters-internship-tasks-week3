@@ -25,21 +25,23 @@ export function validateForm({ email, password, name }) {
 }
 
 const authRoutes = [
-  "/Shopping-Cart/src/login.html",
-  "/Shopping-Cart/src/register.html",
+  "/login.html",
+  "/register.html",
 ];
 const protectedRoutes = [
-  "/Shopping-Cart/src/index.html",
-  "/Shopping-Cart/src/cart.html",
+  "/index.html",
+  "/cart.html",
 ];
+
+console.log(window.location.href);
 
 const currentUser = JSON.parse(localStorage.getItem("CurrentUser")) || {};
 const isUserLoggedIn = !!currentUser.email;
 
-if (authRoutes.includes(window.location.pathname) && isUserLoggedIn) {
+if (authRoutes.some((route)=>window.location.href.endsWith(route)) && isUserLoggedIn) {
   window.location.href = "index.html";
 }
-if (protectedRoutes.includes(window.location.pathname) && !isUserLoggedIn) {
+if (protectedRoutes.some((route)=>window.location.href.endsWith(route)) && !isUserLoggedIn) {
   window.location.href = "login.html";
 }
 
